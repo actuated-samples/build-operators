@@ -17,6 +17,8 @@ jobs:
           run: |
             sudo cat /etc/modprobe.d/disable-autoload.conf
             sudo modprobe bpfilter
+            sudo lsmod
+            sudo dmesg | tail -n 10
         - name: Setup mirror
           uses: self-actuated/hub-mirror@v4
 
