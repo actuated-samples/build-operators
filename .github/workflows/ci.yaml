@@ -13,6 +13,8 @@ jobs:
     build:
         runs-on: [actuated-4cpu-8gb, n100]
         steps:
+        - name: Modprobe bpfilter
+          run: sudo modprobe bpfilter
         - name: Setup mirror
           uses: self-actuated/hub-mirror@v4
 
