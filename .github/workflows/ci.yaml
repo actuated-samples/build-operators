@@ -15,7 +15,13 @@ jobs:
         steps:
         - name: Unlist bpfilter
           run: |
+            sudo cat /etc/modprobe.d/disable-autoload.conf
+            echo Before
             sudo sed -i '/bpfilter/d' /etc/modprobe.d/disable-autoload.conf || :
+            echo After
+            sudo cat /etc/modprobe.d/disable-autoload.conf
+            sudo modprobe bpfilter || :
+            sudo lsmod
         - name: Setup mirror
           uses: self-actuated/hub-mirror@v4
 
