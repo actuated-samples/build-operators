@@ -35,8 +35,8 @@ jobs:
             SERVER=ttl.sh TAG=${{github.sha}} make publish-buildx
         - name: Build and publish inlets-operator
           run: |
-            git clone --depth=1 https://github.com/inlets/inlets-operator
+            git clone https://github.com/inlets/inlets-operator
             cd inlets-operator
-            SERVER=ttl.sh TAG=${{github.sha}} PLATFORM="linux/amd64" make push
+            SERVER=ttl.sh PLATFORM="linux/amd64" make push
 
 
