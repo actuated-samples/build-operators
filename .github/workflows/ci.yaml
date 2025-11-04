@@ -30,6 +30,6 @@ jobs:
           run: |
             git clone --depth=1 https://github.com/inlets/inlets-operator
             cd inlets-operator
-            SERVER=ttl.sh PLATFORM="linux/amd64" make push
+            SERVER=ttl.sh TAG=${{github.sha}} PLATFORM="linux/amd64" make push
 
 
