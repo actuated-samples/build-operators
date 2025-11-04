@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+    build:
+        runs-on: [actuated-4cpu-8gb, n100]
+        steps:
+        - name: Setup mirror
+          uses: self-actuated/hub-mirror@v4
+
+        - name: Checkout
+            uses: actions/checkout@v4
+
+        - name: Build and publish faas-netes CE
+          run: |
+            git clone --depth=1 https://github.com/openfaas/faas-netes
+            cd faas-netes
+            SERVER=ttl.sh make publish-buildx
+        - name: Build and publish inlets-operator
+          run: |
+            git clone --depth=1 https://github.com/inlets/inlets-operator
+            cd inlets-operator
+            SERVER=ttl.sh PLATFORM="linux/amd64" make push
+
+
