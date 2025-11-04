@@ -14,7 +14,8 @@ jobs:
         runs-on: [actuated-4cpu-8gb, n100]
         steps:
         - name: Unlist bpfilter
-          run: sudo sed -i '/bpfilter/d' /etc/modprobe.d/disable-autoload.conf || :
+          run: |
+            sudo sed -i '/bpfilter/d' /etc/modprobe.d/disable-autoload.conf || :
         - name: Setup mirror
           uses: self-actuated/hub-mirror@v4
 
